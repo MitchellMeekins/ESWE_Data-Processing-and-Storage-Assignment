@@ -21,4 +21,8 @@
 3. **Run the Code**:
    In order to run either file, navigate to the chosen directory, open a terminal session in this directory, and run python -i [file_name].py
    - Included in the files are test files. If desired, you may simply run the `test.py` file to verify functionality.
-   - If you would like to manually verify the functionality, run the `main.py` file by using python -i main.py.
+   - If you would like to manually verify the functionality, run tfew he `main.py` file by using python -i main.py.
+  
+
+## Potential Assignment Modifications
+- A potential modification could be to include provided test cases in order to allow for faster grading. There are a few websites where this could be used, but I would recommend simply creating test cases for 3 languages (C++, Python, and Java). This could be placed before the unit testing assignment in order to give a preview for students. Additionally, the functionality of certain functions, such as whether you could begin a transaction during a transaction, was unclear. These changes should be enough, as the assignment was not particularly bad but just a little confusing in terms of the functionality of the code.
