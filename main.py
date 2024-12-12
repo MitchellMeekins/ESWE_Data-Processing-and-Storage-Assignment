@@ -1,35 +1,33 @@
 class InMemoryDB:
-    transaction_active = False
-    memory_dict = {}
-    old_memory_dict = {}
+    def __init__(self):
+        self.transaction_active = False
+        self.committed_dict = {}
+        self.transaction_dict = {}
 
     def get(self, key: str):
-        return self.old_memory_dict.get(key)
+        return self.committed_dict.get(key)
 
     def put(self, key: str, val: int):
-        if self.transaction_active is False:
+        if not self.transaction_active:
             raise Exception("Transaction not active.")
-        self.memory_dict[key] = val
+        self.transaction_dict[key] = val
 
     def begin_transaction(self):
+        if self.transaction_active:
+            raise Exception("Transaction already active.")  # This wasn't demonstrated in Figure 2 but was in the
+            # instructions
         self.transaction_active = True
+        self.transaction_dict = {}
 
     def commit(self):
-        if self.transaction_active is False:
+        if not self.transaction_active:
             raise Exception("Transaction not active.")
-        self.old_memory_dict = self.memory_dict
+        self.committed_dict.update(self.transaction_dict)
         self.transaction_active = False
+        self.transaction_dict = {}
 
     def rollback(self):
-        if self.transaction_active is False:
+        if not self.transaction_active:
             raise Exception("Transaction not active.")
-        self.memory_dict = self.old_memory_dict
         self.transaction_active = False
-
-
-if __name__ == '__main__':
-    inmemoryDB = InMemoryDB()
-
-
-
-
+        self.transaction_dict = {}
